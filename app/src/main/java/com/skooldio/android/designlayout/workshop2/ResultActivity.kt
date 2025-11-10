@@ -15,8 +15,10 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val rounds = intent.getIntExtra("rounds", 0)
+        val anwser = intent.getIntExtra("anwser", 0)
 
         binding.textViewCongrats.text = "🎉 CONGRATS! 🎉"
+        binding.anwser.text = "$anwser"
         binding.textViewRoundNum.text = "$rounds"
 
 

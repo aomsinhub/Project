@@ -20,31 +20,28 @@ class MainActivity : AppCompatActivity() {
 
         startNewGame()
 
-        // ปุ่มตัวเลข 0-9
         val numberButtons = listOf(
             binding.button0, binding.button1, binding.button2,
             binding.button3, binding.button4, binding.button5,
             binding.button6, binding.button7, binding.button8, binding.button9
         )
 
-        // เมื่อกดตัวเลข
         numberButtons.forEach { button ->
             button.setOnClickListener {
-                if (currentInput.length < 2) { // กำหนดไม่ให้เกิน 2 หลัก
+                if (currentInput.length < 2) {
                     currentInput += button.text
                     updateInput()
                 }
             }
         }
 
-        // ปุ่มลบตัวสุดท้าย
         binding.buttonDelete.setOnClickListener {
             if (currentInput.isNotEmpty()) {
                 currentInput = currentInput.dropLast(1)
                 updateInput()
             }
         }
-        // ปุ่ม OK สำหรับตรวจคำตอบ
+
         binding.buttonSubmit.setOnClickListener {
             if (currentInput.isEmpty()) return@setOnClickListener
 
@@ -55,9 +52,10 @@ class MainActivity : AppCompatActivity() {
                 guess < randomNumber -> binding.textViewResultNum.text = ">"
                 guess > randomNumber -> binding.textViewResultNum.text = "<"
                 else -> {
-                    val result = GameResult(roundCount)
+                    val result = GameResult(roundCount, randomNumber)
                     val intent = Intent(this, ResultActivity::class.java)
                     intent.putExtra("rounds", result.rounds)
+                    intent.putExtra("anwser", result.anwser)
                     startActivity(intent)
                     finish()
                 }
