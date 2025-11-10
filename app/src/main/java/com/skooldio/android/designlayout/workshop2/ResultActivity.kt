@@ -14,13 +14,11 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val answer = intent.getIntExtra("answer", -1)
         val rounds = intent.getIntExtra("rounds", 0)
 
-        binding.textViewCongrats.text = "🎉 ยินดีด้วย! 🎉"
+        binding.textViewCongrats.text = "🎉 CONGRATS! 🎉"
         binding.textViewRoundNum.text = "$rounds"
-        // ถ้าต้องการโชว์เลขเฉลยด้วย:
-        // binding.textViewCongrats.text = "🎉 ยินดีด้วย! 🎉\nเลขคือ $answer"
+
 
         binding.buttonPlayAgain.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

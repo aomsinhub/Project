@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 updateInput()
             }
         }
-
         // ปุ่ม OK สำหรับตรวจคำตอบ
         binding.buttonSubmit.setOnClickListener {
             if (currentInput.isEmpty()) return@setOnClickListener
@@ -56,9 +55,8 @@ class MainActivity : AppCompatActivity() {
                 guess < randomNumber -> binding.textViewResultNum.text = ">"
                 guess > randomNumber -> binding.textViewResultNum.text = "<"
                 else -> {
-                    val result = GameResult(randomNumber, roundCount)
+                    val result = GameResult(roundCount)
                     val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra("answer", result.answer)
                     intent.putExtra("rounds", result.rounds)
                     startActivity(intent)
                     finish()
